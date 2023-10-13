@@ -1,0 +1,23 @@
+name: SonarCloud analysis
+'on':
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch: null
+jobs:
+  Analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Analyze with SonarCloud
+        uses: >-
+          SonarSource/sonarcloud-github-action@de2e56b42aa84d0b1c5b622644ac17e505c9a049
+        env:
+          GITHUB_TOKEN: 1234rthjrthtr556
+          SONAR_TOKEN: f11d0b115fbdb7796f15a31aebe616f81654cb5e
+        with:
+          args: |
+            -Dsonar.projectKey=iamneo-production_${{ github.repository }}
+            -Dsonar.organization=iamneo-production
